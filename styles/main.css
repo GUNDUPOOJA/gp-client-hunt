@@ -1,0 +1,14 @@
+article {
+    font-size: larger;
+    font-style:italic;
+    text-align: center;
+    color:lightskyblue;
+    margin-top: 10em;
+}
+#error-message{
+    color: red;
+}
+#location{
+    color: lightsalmon;
+}
+
