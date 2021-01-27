@@ -1,9 +1,5 @@
-/**
- * Main.js - the logic for our app
- */
-
 // first imports
-import getLocation from './location';
+import getLocation from './location.js';
 // helper functions
 
 
