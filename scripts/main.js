@@ -11,8 +11,26 @@ import getLocation from './location.js';
  */
 async function locationHandler() {
     const locText = await getLocation();
-    document.getElementById('locationAnswer').innerHTML = locText;
-}
+    currentlat=locText.coords.latitude;
+    document.getElementById("device-lat").innerHTML="This is about device-lat: " + currentlat.toFixed(6);
+    currentlon = locText.coords.longitude;
+    document.getElementById('device-long').innerHTML ="This is about device-long: " + currentlon.toFixed(6);
+    locationsArray.forEach(function (value) {
+        if (isInside(value.Latitude, value.Longitude)) {
+            document.getElementById("locationAnswer").innerHTML = value.Name;
+            error = false;
+        }
+    });
+   
+    if(error){
+        document.getElementById("error-message").innerHTML = "you are out of bounds";
+    }
+    else{
+        document.getElementById("error-message").innerHTML="";
+    }
+    }
+
+
 
 function clearErrorText() {
     document.getElementById('error-message').innerHTML = '';
@@ -33,6 +51,20 @@ function main() {
     locationElement.addEventListener('click', locationHandler);
     locationElement.addEventListener('touch', locationHandler);
 }
+// initializing the current position lat and lon and error to true
+let currentlat;
+let currentlon;
+let error = true;
+
+// collects current location
+async function getLocation() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    }).then(position => {
+        return position;
+    });
+}
+
 
 // this is where it begins
 window.addEventListener('load', main);
