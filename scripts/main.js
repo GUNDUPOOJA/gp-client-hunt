@@ -32,9 +32,9 @@ async function getLocation() {
 async function locationHandler() {
     let locText = await getLocation();
     currentlat = locText.coords.latitude;
-    document.getElementById("device-lat").innerHTML = "This is about device-lat: " + currentlat.toFixed(6);
+    document.getElementById("device-lat").innerHTML = "device-lat: " + currentlat.toFixed(6);
     currentlon = locText.coords.longitude;
-    document.getElementById("device-long").innerHTML = "This is about device-long: " + currentlon.toFixed(6);
+    document.getElementById("device-long").innerHTML = "device-long: " + currentlon.toFixed(6);
 
     locationsArray.forEach(function (value) {
         if (isInside(value.Latitude, value.Longitude)) {
