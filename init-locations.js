@@ -1,13 +1,20 @@
-export default [
-    {
-        Name: 'Horizons Apartments',
-        Latitude: 40.3589695,
-        Longitude: -94.8831951
-    },
-    {
-        Name: 'Admin block NWMSU',
-        Latitude: 40.35339,
-        Longitude: -94.88356
-    }
+// export default object with the initialization data
 
-];
+export default [
+      
+    {
+        Name: 'Horizons west apartments',
+        Latitude: 40.35614, 
+        Longitude: -94.88189,
+       //   South: 35.8425,
+        //    East: -78.844,
+     },
+           {
+        Name: 'mooyah',
+        North: 40.35287, 
+        West: -98.88805,
+        South: 40.35287, 
+        East: -98.88805,
+    }
+      
+  ];

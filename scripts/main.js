@@ -1,7 +1,18 @@
+/**
+ * main.js - the logic for our app
+ * Get the location
+ * @author Sumana Reddy Reddybathula
+ */
 
+// first imports.......................
 import locationsArray from '../init-locations.js';
 
-// for location element we assigned location id.
+// helper functions....................
+
+
+// event handlers......................
+
+
 let locationElement = document.getElementById("location");
 
 window.addEventListener('load', main);
@@ -12,12 +23,11 @@ function main() {
     console.log('Page is fully loaded');
 }
 
-// initializing the current position lat and lon and error to true
 let currentlat;
 let currentlon;
 let error = true;
 
-// collects current location
+// getLocation() function is used to collect the current location
 async function getLocation() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -26,14 +36,15 @@ async function getLocation() {
     });
 }
 
-// gets current locations and compares the locations from init-locations.js
+//the locationHandler() function checksout the current location and compares it with the 
+//init-locations.
 
 async function locationHandler() {
     let locText = await getLocation();
     currentlat = locText.coords.latitude;
-    document.getElementById("device-lat").innerHTML = "device-lat: " + currentlat.toFixed(6);
+    document.getElementById("device-lat").innerHTML = "device-latitude: " + currentlat.toFixed(6);
     currentlon = locText.coords.longitude;
-    document.getElementById("device-long").innerHTML = "device-long: " + currentlon.toFixed(6);
+    document.getElementById("device-long").innerHTML = "device longitude: " + currentlon.toFixed(6);
 
     locationsArray.forEach(function (value) {
         if (isInside(value.Latitude, value.Longitude)) {
@@ -42,17 +53,42 @@ async function locationHandler() {
         }
     });
 
-    function distance(lat1,lon1,lat2,lon2){
-        var R = 6371; // Earth's radius in Km
-        return Math.acos(Math.sin(lat1)*Math.sin(lat2) + 
-                        Math.cos(lat1)*Math.cos(lat2) *
-                        Math.cos(lon2-lon1)) * R;
-      }
-      
-      
-      if (distance(user.lat, user.lon, post.lat, post.lon) <= desiredRadiusInKm){
-        // return true;
-      } else {
-        // return false;
-      }
+    // In case of any error where if the device is not 30m range it displays error.
+
+    if(error) {
+        document.getElementById("error-message").innerHTML = "You're not in the radius range.";
+    } else {
+        document.getElementById("error-message").innerHTML = "";
     }
+}
+
+
+//checking if distance is in 30m range.
+
+
+function isInside(questLat, questLon) {
+    let distance = distanceBetweenLocations(questLat, questLon);
+    console.log("distance: " + distance);
+    if (distance < 20) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//distance between the lat-long points.
+function distanceBetweenLocations(questLat, questLon) {
+    const R = 6371e3;
+    const φ1 = currentlat * Math.PI / 180;
+    const φ2 = questLat * Math.PI / 180;
+    const Δφ = (questLat - currentlat) * Math.PI / 180;
+    const Δλ = (questLon - currentlon) * Math.PI / 180;
+
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const d = R * c;
+    return d; 
+}
