@@ -27,8 +27,7 @@ async function getLocation() {
 }
 
 // gets current locations and compares the locations from init-locations.js
-// if error is true provides you're not 30 meters nearer to any place
-// if error is false won't show any thing
+
 async function locationHandler() {
     let locText = await getLocation();
     currentlat = locText.coords.latitude;
@@ -56,41 +55,4 @@ async function locationHandler() {
       } else {
         // return false;
       }
-
-//     if(error) {
-//         document.getElementById("error-message").innerHTML = "You're not 30 meters nearer to any place.";
-//     } else {
-//         document.getElementById("error-message").innerHTML = "";
-//     }
-// }
-
-// //Calculates distance and checks distance is below or above 30 meters
-// function isInside(questLat, questLon) {
-//     let distance = distanceBetweenLocations(questLat, questLon);
-//     console.log("distance: " + distance);
-//     if (distance < 30) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
-
-
-// //Calculate distance between Latitude/Longitude points
-// //Returns the distance in meters
-// function distanceBetweenLocations(questLat, questLon) {
-//     const R = 6371e3;
-//     const φ1 = currentlat * Math.PI / 180;
-//     const φ2 = questLat * Math.PI / 180;
-//     const Δφ = (questLat - currentlat) * Math.PI / 180;
-//     const Δλ = (questLon - currentlon) * Math.PI / 180;
-
-//     const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-//         Math.cos(φ1) * Math.cos(φ2) *
-//         Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-//     const d = R * c;
-//     return d; // in metres
-// }
-}
+    }
