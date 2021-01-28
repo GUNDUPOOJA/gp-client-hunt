@@ -44,7 +44,7 @@ async function locationHandler() {
     currentlat = locText.coords.latitude;
     document.getElementById("device-lat").innerHTML = "device-latitude: " + currentlat.toFixed(6);
     currentlon = locText.coords.longitude;
-    document.getElementById("device-long").innerHTML = "device longitude: " + currentlon.toFixed(6);
+    document.getElementById("device-long").innerHTML = "device-longitude: " + currentlon.toFixed(6);
 
     locationsArray.forEach(function (value) {
         if (isInside(value.Latitude, value.Longitude)) {
@@ -69,7 +69,7 @@ async function locationHandler() {
 function isInside(questLat, questLon) {
     let distance = distanceBetweenLocations(questLat, questLon);
     console.log("distance: " + distance);
-    if (distance < 20) {
+    if (distance < 50) {
         return true;
     } else {
         return false;
