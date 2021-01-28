@@ -69,7 +69,7 @@ async function locationHandler() {
 function isInside(questLat, questLon) {
     let distance = distanceBetweenLocations(questLat, questLon);
     console.log("distance: " + distance);
-    if (distance > 30) {
+    if (distance < 10) {
         return true;
     } else {
         return false;
