@@ -1,7 +1,7 @@
 /**
  * main.js - the logic for our app
  * Get the location
- * @author Sumana Reddy Reddybathula
+ * @author Gundu Pooja
  */
 
 // first imports.......................
@@ -63,7 +63,7 @@ async function locationHandler() {
 }
 
 
-//checking if distance is in 30m range.
+//checking if distance is in 10m range.
 
 
 function isInside(questLat, questLon) {
