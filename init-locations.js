@@ -3,8 +3,8 @@
 export default [
           {
         Name: 'Horizons west apartments',
-        //  Latitude: 40.35608, 
-        //  Longitude: -94.88195,
+         Latitude: 40.35608, 
+         Longitude: -94.88195,
         North: 40.35614, 
         South: 40.35614, 
         East: -94.88189,
@@ -13,8 +13,8 @@ export default [
      },
            {
         Name: 'mooyah',
-        Latitude:40.35287,
-        Longitude:-98.88805,
+        // Latitude:40.35287,
+        // Longitude:-98.88805,
         North: 40.35287, 
         West: -98.88805,
         South: 40.35287, 
