@@ -49,7 +49,7 @@ export default function getLocation() {
             const name = thisLoc.Name;
             document.querySelector('#locationAnswer').innerHTML = name;
             const utterance = new SpeechSynthesisUtterance();
-            utterance.text = `Congratulations! You found location ${name}`;
+            utterance.text = `Congratulations! from pooja, You found location ${name}`;
             window.speechSynthesis.speak(utterance);
             break;
           }
